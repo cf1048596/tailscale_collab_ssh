@@ -15,5 +15,5 @@ Due to the limitation of no simultaneous/execution of cells in a notebook (at le
 `up`, will merely started the `tailscaled` daemon in with userspace networking, but then you have to stop the cell yourself to then run
 'start.py up' to then setup tailscale as usual.
 
-Of course replace '/path/to/directory whereever you downloaded the script to.
+Of course replace `'/path/to/directory'` where ever you downloaded the script to.
 Place your `.env` file in the same directory as the script.
