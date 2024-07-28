@@ -11,7 +11,7 @@ $ !cd /path/to/directory && python start.py install
 To install tailscale and setup a default user and password as a super user according to the env variables specified in the `.env` file.
 then do the same as before but change `install` to `up`.
 
-Due to the limitation of no simultaneous/execution of cells in a notebook (at least on the free tier anyway),
+Due to the limitation of no simultaneous/execution of cells in a notebook (at least on the free tier anyway).<br>
 `up` will merely start the `tailscaled` daemon in with userspace networking.<br>
 You have to stop the cell yourself to then run
 'start.py up' to then setup tailscale as usual.
