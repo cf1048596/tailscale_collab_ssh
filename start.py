@@ -1,5 +1,17 @@
 import subprocess
 import os
+import argparse
+
+def install_tailscale():
+    # Install Tailscale using curl and shell script
+    subprocess.run('curl -fsSL https://tailscale.com/install.sh | sh', shell=True, check=True)
+    print("Tailscale installed.")
+
+def create_user():
+    # Create a new user named 'christian' with password 'asdf123'
+    subprocess.run(['sudo', 'useradd', '-m', '-s', '/bin/bash', 'christian'], check=True)
+    subprocess.run(['sudo', 'chpasswd'], input='christian:asdf123', text=True, check=True)
+    print("New user 'christian' created with password 'asdf123'.")
 
 def start_tailscaled():
     # Start tailscaled in the background
@@ -9,12 +21,21 @@ def start_tailscaled():
         stderr=subprocess.DEVNULL,
         preexec_fn=os.setpgrp  # Ensure the process group is set so it continues running after the script exits
     )
+    print("Tailscaled started in the background.")
     return process
 
 def main():
-    # Start tailscaled
-    start_tailscaled()
-    print("Tailscaled started in the background.")
+    parser = argparse.ArgumentParser(description="Manage Tailscale installation and service.")
+    parser.add_argument('action', choices=['install', 'up'], nargs='?', default='install',
+                        help="Specify the action to perform: 'install' to install Tailscale and create a user, 'up' to start tailscaled.")
+
+    args = parser.parse_args()
+
+    if args.action == 'install':
+        install_tailscale()
+        create_user()
+    elif args.action == 'up':
+        start_tailscaled()
 
 if __name__ == "__main__":
     main()
