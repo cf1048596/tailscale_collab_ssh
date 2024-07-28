@@ -3,7 +3,7 @@
 Created this so I could have a terminal on a google collab machine even on the free tier.<br>
 Yes, the inherent downside is that the machine will cease after however so long/compute used even if you use the same notebook.
 
-Simply invoke the script in a google collab cell like.
+Simply invoke the script in a collab cell like the following:
 
 ```console
 $ !cd /path/to/directory && python start.py install
